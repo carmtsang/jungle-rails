@@ -77,7 +77,7 @@ cat1.products.create!({
   As a defense mechanism the Lion Grapevine grows small thorns.
   They rely on wind pollination to reproduce. Once pollinated, they grow small, inedible fruits.",
   image: open_asset('plante_3.jpg'),
-  quantity: 4,
+  quantity: 0,
   price: 34.49
 })
 

@@ -1,5 +1,9 @@
-.dashboard {
+.admin-dashboard {
   display: flex;
-  justify-content: space-evenly;
-  padding-top: 5rem;
+  flex-direction: column;
+
+  .dash-body {
+    display: flex;
+    justify-content: space-evenly;
+  }
 }

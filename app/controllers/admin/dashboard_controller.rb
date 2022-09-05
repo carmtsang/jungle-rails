@@ -4,7 +4,8 @@ class Admin::DashboardController < ApplicationController
   def show
     @counts = {
       product: Product.count(:id),
-      category: Category.count(:id)
+      category: Category.count(:id),
+      orders: Order.count(:id)
     }
   end
 end

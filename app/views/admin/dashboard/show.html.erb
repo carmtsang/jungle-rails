@@ -2,10 +2,7 @@
 
 <section class="dashboard">
   <% @counts.each do |key, value| %>
-    <div>
-      <h2><%=key %></h2>
-      <p><%=value.to_s %></p>
-    </div>
+    <%= render 'item', key: key, value: value %>
   <% end %>
 </section>
 

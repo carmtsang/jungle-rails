@@ -4,8 +4,6 @@ Rails.application.routes.draw do
 
   get "/about", to: "about#index"
 
-  resources :users
-
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]
 
@@ -14,7 +12,12 @@ Rails.application.routes.draw do
     post   :remove_item
   end
 
-  resources :orders, only: [:create, :show]
+  resources :orders, :users only: [:create, :show]
+  
+  get "/signup", to: "users#new"
+  get "login", to: "sessions#new"
+  post "/sessions", to: "sessions#create"
+  delete "/sessions", to: "sessions#destroy"
 
   namespace :admin do
     root to: 'dashboard#show'

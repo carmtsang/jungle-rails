@@ -1,0 +1,23 @@
+<section class="users-login">
+  <header class="page-header">
+    <h1>Log In</h1>
+  </header>
+
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-1">
+      <%= form_tag sessions_path do %>
+        <div class="form-group">
+          <%= label_tag "Email" %>
+          <%= text_field_tag :email, nil, placeholder: "example@email.com" %>
+        </div>
+
+        <div class="form-group">
+          <%= label_tag "Password" %>
+          <%= password_field_tag :password, nil, placeholder: "Password" %>
+        </div>
+
+        <%= submit_tag 'Log In', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</section>

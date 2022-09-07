@@ -11,7 +11,6 @@ class UsersController < ApplicationController
       else
         redirect :new
       end
-    end
   end
 
   private

@@ -18,6 +18,11 @@
         </div>
 
         <div class="form-group">
+          <%= form.label :email %>
+          <%= form.text_field :email, placeholder: "example@email.com" class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
           <%= form.label :password %>
           <%= form.password_field :password, placeholder: "Password" class: 'form-control' %>
         </div>

@@ -41,7 +41,18 @@ RSpec.describe User, type: :model do
 
     it 'should have an email that is unique' do
       @user.save
-      @user2 = User.new(first_name: "Homer", last_name: "Simpson", email: "homer@simpson.com", password: "123456", password_confirmation: "123456")
+      @user2 = User.new(first_name: "Homer ", last_name: "Simpson", email: "homer@simpson.com", password: "abcdef", password_confirmation: "abcdef")
+
+      @user2.save
+    
+      expect(@user2).to_not be_valid
+    end
+
+    it 'should remove the spaces' do
+      @user.save
+      @user2 = User.new(first_name: "Homer ", last_name: "Simpson", email: "homer@simpson.com", password: "abcdef", password_confirmation: "abcdef")
+
+      @user2.save
     
       expect(@user2).to_not be_valid
     end
@@ -62,14 +73,35 @@ RSpec.describe User, type: :model do
     end
 
     it 'should return the user if email and password match' do
+      @user.save
+      expect(User.authenticate_with_credentials('homer@simpson.com', '123456')).to eq(@user)
     end
 
     it 'should be nil if the email is not found' do
+      @user.save
       email = 'bart@simpson.com'
-      # @user.validate
 
       expect(User.authenticate_with_credentials(email, @user.password)).to eq(nil)
     end
+
+    it 'should return nil if the password does not match' do
+      @user.save
+      password = 'abcdef'
+      expect(User.authenticate_with_credentials(@user.email, password)).to eq(nil)
+    end
+
+    it 'should return the user if the email is case sensitive' do
+      @user.save
+      email = 'HOMER@SIMPSON.com'
+
+      expect(User.authenticate_with_credentials(email, @user.password)).to eq(@user)
+    end
+
+    it 'should return the user if there is a space before or after the email inputted' do
+      @user.save
+      expect(User.authenticate_with_credentials("homer@simpson.com ", @user.password)).to eq(@user)
+    end
   end
+
   
 end
